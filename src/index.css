@@ -1,0 +1,273 @@
+body {
+  margin: 0px;
+}
+.header {
+  background-color: #2f2e41;
+  height: 607px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header-text {
+  width: 835px;
+  height: 88px;
+
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 98px;
+
+  color: #ffffff;
+}
+
+#below-header-text {
+  height: 76px;
+  margin-top: 50px;
+  justify-content: center;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 76px;
+  color: #3f3d56;
+}
+
+.non-header-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  /* width: 1340px; */
+  height: 2px;
+  margin-top: 50px;
+  background: #d0cde1;
+}
+
+#search-box-div {
+  margin-top: 50px;
+  width: 821px;
+  height: 82px;
+  background: #d0cde1;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+
+#search-input-box {
+  width: 709px;
+  height: 62px;
+  left: 328px;
+  top: 845px;
+  background: #ffffff;
+  border-radius: 15px;
+  border: none;
+  margin: 12px;
+  font-size: 24px;
+  color: #3f3d56;
+  padding-left: 28px;
+}
+
+#search-input-box:focus,
+#add-developer-btn,
+#link-input-box {
+  outline: none;
+}
+
+#search-icon {
+  height: 41.54px;
+  width: 41.54px;
+  margin-right: 33.34px;
+}
+
+.github-id-nd-avatar-section {
+  height: fit-content;
+  width: 1021.66px;
+  margin-top: 0.38px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.github-id-nd-avatar {
+  display: flex;
+  align-items: center;
+  flex: 50%;
+  margin-top: 90px;
+}
+
+#avatar {
+  height: 91.67px;
+  width: 91.67px;
+  border-radius: 50%;
+}
+
+#github-id {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  color: #9f8e63;
+  margin-left: 57.17px;
+}
+
+#north-east-icon {
+  font-size: 20px;
+  margin-left: 20px;
+  color: #0768fa;
+}
+
+#add-developer-btn {
+  width: 456px;
+  height: 82px;
+  background: #7c639f;
+  border-radius: 15px;
+  border: none;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  color: #ffffff;
+  margin-top: 30px;
+}
+
+#could-not-find-text {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 49px;
+  margin-top: 50px;
+  color: #3f3d56;
+}
+
+.footer {
+  width: 100%;
+  height: 96px;
+  margin-top: 63px;
+
+  background: #3f3d56;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-text {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #ffffff;
+}
+
+#heart {
+  color: red;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 1040px;
+  height: 1200px;
+  top: 133px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  background: #ffffff;
+}
+
+#modal-heading {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+
+  color: #000000;
+
+  margin-left: 50px;
+  margin-top: 42px;
+}
+
+.website-logo-nd-link {
+  display: flex;
+  align-items: center;
+  margin-top: 56px;
+  margin-left: 80px;
+}
+
+#website-logo {
+  height: 30px;
+  width: 30px;
+}
+
+#website-link {
+  width: 85px;
+  height: 33px;
+
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.link-input-box {
+  width: 596px;
+  height: 50px;
+  margin-top: 21px;
+
+  margin-left: 80px;
+
+  background: #ffffff;
+  border: 1px solid #d0cde1;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.cancel-nd-submit {
+  margin-left: 645px;
+  margin-top: 51px;
+}
+
+#cancel-label {
+  width: 74px;
+
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #3f3d56;
+}
+
+#submit-btn {
+  width: 175px;
+  height: 60px;
+
+  background: #7c639f;
+  border-radius: 15px;
+  border: none;
+
+  margin-left: 83px;
+
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+
+  color: #ffffff;
+}
