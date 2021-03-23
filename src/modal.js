@@ -13,7 +13,7 @@ const logoAndLinkLabel = [
   {
     logo: "linkedin.png",
     linkLabel: "Linkedin",
-    name: "linekdin",
+    name: "linkedin",
   },
 
   {
@@ -87,7 +87,7 @@ class GetModal extends Component {
                   return (
                     <GetWebsiteInfo
                       onChange={this.changeHandler}
-                      value={linkedinURL}
+                      value="aman"
                       linkDetail={linkDetail}
                     />
                   );
