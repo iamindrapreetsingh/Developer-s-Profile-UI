@@ -5,6 +5,7 @@ import GetHeader from "./header";
 import GetNonHeaderSection from "./nonHeaderSection";
 import GetFooter from "./footer";
 import GetModal from "./modal";
+import GetDeveloperDetailsPage from "./developerDetailsPage";
 
 ReactDOM.render(
   <div>
@@ -20,6 +21,13 @@ ReactDOM.render(
     <GetModal></GetModal>
   </div>,
   document.getElementById("modal-div")
+);
+
+ReactDOM.render(
+  <div>
+    <GetDeveloperDetailsPage></GetDeveloperDetailsPage>
+  </div>,
+  document.getElementById("details-page-div")
 );
 
 /**
@@ -42,5 +50,4 @@ document.querySelector("#cancel-label").addEventListener("click", () => {
 addDeveloperBtn.addEventListener("click", () => {
   modal.style.display = "flex";
   root.style.opacity = 0.3;
-  root.style.position = "fixed";
 });

@@ -1,15 +1,10 @@
-import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import "./index.css";
 import GetWebsiteInfo from "./websiteInfo";
+import GetLinkHeadingNdLogo from "./linkHeadingNdLogo";
+import axios from "axios";
 
 const logoAndLinkLabel = [
-  {
-    logo: "github.png",
-    linkLabel: "Github*",
-    name: "github",
-  },
-
   {
     logo: "linkedin.png",
     linkLabel: "Linkedin",
@@ -46,102 +41,92 @@ class GetModal extends Component {
     super(props);
 
     this.state = {
-      githubURL: "",
-      linkedinURL: "",
-      codechefURL: "",
-      hackerrankURL: "",
-      twitterURL: "",
-      mediumURL: "",
+      github: "",
+      linkedin: "",
+      codechef: "",
+      hackerrank: "",
+      twitter: "",
+      medium: "",
     };
   }
 
   changeHandler = (e) => {
-    alert(JSON.stringify(this.state));
     this.setState({ [e.target.name]: e.target.value });
   };
 
   submitHandler = (e) => {
-    alert("Hello");
     e.preventDefault();
+    document.querySelector("#github-id-error").style.display = "none";
     console.log(this.state);
+    const requestPayload = {
+      codechef_id: this.state.codechef,
+      github_id: this.state.github,
+      hackerrank_id: this.state.hackerrank,
+      linkedin_id: this.state.linkedin,
+      medium_id: this.state.medium,
+      twitter_id: this.state.twitter,
+    };
+    axios
+      .post("http://localhost:7000/api/developers", requestPayload)
+      .then((response) => {
+        console.log("User Added");
+        alert("User added Successfully!!");
+        const root = document.querySelector("#root");
+        const modal = document.querySelector(".modal");
+        modal.style.display = "none";
+        root.style.display = "block";
+        root.style.position = "static";
+        root.style.opacity = 1;
+        return;
+      })
+      .catch((err) => {
+        const githubErrorMessage = document.querySelector("#github-id-error");
+        if (err.response.status === 409) {
+          githubErrorMessage.style.display = "block";
+          githubErrorMessage.innerHTML = "User already exists!!";
+          githubErrorMessage.style.borderColor = "red";
+        } else if (err.response.status === 400) {
+          githubErrorMessage.style.display = "block";
+          githubErrorMessage.innerHTML = "Invalid Github id!!";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
-    const {
-      githubURL,
-      linkedinURL,
-      codechefURL,
-      hackerrankURL,
-      twitterURL,
-      mediumURL,
-    } = this.state;
+    const { inputBoxValue } = this.state;
     return (
       <div className="modal">
         <form onSubmit={this.submitHandler}>
           <div className="modal-content">
             <div id="modal-heading">Add a Developer's Profile</div>
 
-            {logoAndLinkLabel.map((linkDetail) => {
-              switch (linkDetail.name) {
-                case "linkedin":
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value="aman"
-                      linkDetail={linkDetail}
-                    />
-                  );
+            <div>
+              <GetLinkHeadingNdLogo logo="github.png" linkLabel="Github*" />
+              <input
+                onChange={this.changeHandler}
+                defaultValue={inputBoxValue}
+                className="link-input-box"
+                type="text"
+                name="github"
+                required
+              />
+              <div id="github-id-error">Invalid github id!!</div>
+            </div>
 
-                case "codechef":
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value={codechefURL}
-                      linkDetail={linkDetail}
-                    />
-                  );
-
-                case "hackerrank":
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value={hackerrankURL}
-                      linkDetail={linkDetail}
-                    />
-                  );
-
-                case "twitter":
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value={twitterURL}
-                      linkDetail={linkDetail}
-                    />
-                  );
-
-                case "medium":
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value={mediumURL}
-                      linkDetail={linkDetail}
-                    />
-                  );
-
-                default:
-                  return (
-                    <GetWebsiteInfo
-                      onChange={this.changeHandler}
-                      value={githubURL}
-                      linkDetail={linkDetail}
-                    />
-                  );
-              }
-            })}
+            {logoAndLinkLabel.map((linkDetail) => (
+              <GetWebsiteInfo
+                onChange={this.changeHandler}
+                value={inputBoxValue}
+                linkDetail={linkDetail}
+              />
+            ))}
 
             <div className="cancel-nd-submit">
               <label id="cancel-label">Cancel</label>
-              <input type="submit" id="submit-btn" value="submit" />
+              <a href=".header"><input type="submit" id="submit-btn" value="submit" /></a>
             </div>
           </div>
         </form>

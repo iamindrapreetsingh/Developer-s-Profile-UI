@@ -8,7 +8,6 @@ function GetHeader() {
         <div>The Developer</div>
         <div>Repository</div>
       </div>
-
       <img src="header-image.png" alt="header-img" />
     </header>
   );

@@ -2,7 +2,8 @@ import React from "react";
 import "./index.css";
 
 function GetDivider(props) {
-  return <hr style={{ width: 500 }} className="divider" />;
+  const {width,marginTop} = props;
+  return <hr style={{ width: {width}, marginTop: {marginTop} }} className="divider" />;
 }
 
 export default GetDivider;

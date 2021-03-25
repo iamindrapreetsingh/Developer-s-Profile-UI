@@ -7,7 +7,7 @@ function GetLinkInputBox(props) {
     <input
       onChange={onChange}
       name={name}
-      value={value}
+      defaultValue={value}
       className="link-input-box"
       type="text"
     />
