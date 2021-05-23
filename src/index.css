@@ -1,13 +1,21 @@
 body {
   margin: 0px;
 }
+
 .header {
+  display: flex;
+  justify-content: center;
   background-color: #2f2e41;
+}
+
+.header-content {
   height: 607px;
   width: 100%;
   display: flex;
+  background-color: #9f8e63;
   justify-content: space-between;
   align-items: center;
+  width: 1180px;
 }
 
 #header-text {
@@ -394,13 +402,13 @@ body {
   color: #0768fa;
 }
 
-#repo-created-at{
+#repo-created-at {
   font-family: Nunito Sans;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   margin-left: 20px;
-  color: #3F3D56;
+  color: #3f3d56;
   opacity: 0.4;
 }
 
@@ -410,7 +418,7 @@ body {
   color: #0768fa;
 }
 
-#repo-desc{
+#repo-desc {
   font-family: Nunito Sans;
   font-style: normal;
   font-weight: normal;
@@ -418,7 +426,7 @@ body {
   line-height: 44px;
   margin-left: 30px;
   margin-top: 15px;
-  color: #3F3D56;
+  color: #3f3d56;
 }
 
 @media screen and (max-width: 1025px) {
@@ -482,15 +490,61 @@ body {
     margin-left: 9.08px;
   }
 
-  #github-repo-heading, #repo-name {
+  #github-repo-heading,
+  #repo-name {
     font-size: 27px;
   }
 
-  #repo-desc{
+  #repo-desc {
     font-size: 18px;
   }
 
-  #repo-created-at{
-      font-size: 16px;
+  #repo-created-at {
+    font-size: 16px;
   }
+
+  #header-img {
+    height: 450px;
+    width: 550px;
+  }
+
+  .header-content {
+    flex-direction: column;
+  }
+
+  #header-text {
+    font-size: 20px;
+  }
+
+  #below-header-text{
+    font-size: 20px;
+  }
+
+  #search-box-div{
+    width: 278px;
+    height: 27.77px;
+    border-radius: 15px;
+  }
+
+  #search-input-box{
+    width: 240.08px;
+    height: 15px;
+    border-radius: 15px;
+    font-size: 12px;
+  }
+
+  #search-icon{
+    height: 14.07px;
+    width: 14.07px;
+  }
+
+  #avatar{
+    height: 20.83px;
+    width: 20.83px;
+  }
+
+  #github-id{
+      font-size: 12px;
+  }
+
 }
