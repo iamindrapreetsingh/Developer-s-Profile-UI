@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./index.css";
-import axios from "axios";
 import GetDivider from "./divider";
 import GetGithubRepoInfo from "./githubRepoInfo";
 
@@ -18,108 +17,106 @@ class GetDeveloperDetailsPage extends Component {
     };
   }
 
-  changeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  submitHandler = (e) => {
-    e.preventDefault();
-    document.querySelector("#github-id-error").style.display = "none";
-    console.log(this.state);
-    const requestPayload = {
-      codechef_id: this.state.codechef,
-      github_id: this.state.github,
-      hackerrank_id: this.state.hackerrank,
-      linkedin_id: this.state.linkedin,
-      medium_id: this.state.medium,
-      twitter_id: this.state.twitter,
-    };
-    axios
-      .post("http://localhost:7000/api/developers", requestPayload)
-      .then((response) => {
-        console.log("User Added");
-        alert("User added Successfully!!");
-        const root = document.querySelector("#root");
-        const modal = document.querySelector(".modal");
-        modal.style.display = "none";
-        root.style.display = "block";
-        root.style.position = "static";
-        root.style.opacity = 1;
-        return;
-      })
-      .catch((err) => {
-        const githubErrorMessage = document.querySelector("#github-id-error");
-        if (err.response.status === 409) {
-          githubErrorMessage.style.display = "block";
-          githubErrorMessage.innerHTML = "User already exists!!";
-          githubErrorMessage.style.borderColor = "red";
-        } else if (err.response.status === 400) {
-          githubErrorMessage.style.display = "block";
-          githubErrorMessage.innerHTML = "Invalid Github id!!";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  goToHomePage = () => {
+    document.querySelector(".non-header-section").style.display = "flex";
+    document.querySelector(".header-content").style.display = "flex";
+    document.querySelector(".details-page").style.display = "none";
+    document.querySelector(".footer").style.marginTop = "63px";
   };
 
   render() {
+    const {
+      avatar_url,
+      name,
+      bio,
+      location,
+      company,
+      blog,
+      github_id,
+      linkedin_id,
+      medium_id,
+      codechef_id,
+      hackerrank_id,
+      twitter_id,
+      repos,
+    } = this.props.developerDetails;
     return (
       <div className="details-page">
         <div className="details-page-header">
-          <div id="details-page-header-left-text">The Developer Profile</div>
-          <div id="details-page-header-right-text">All Developers</div>
+          <div onClick={this.goToHomePage} id="details-page-header-left-text">
+            The Developer Profile
+          </div>
+          <div onClick={this.goToHomePage} id="details-page-header-right-text">
+            All Developers
+          </div>
         </div>
         <div className="avatar-and-summary">
-          <img
-            id="details-page-avatar"
-            src="https://avatars.githubusercontent.com/u/51911982?v=4"
-            alt="inder"
-          />
+          <img id="details-page-avatar" src={avatar_url} alt={avatar_url} />
           <div id="developer-summary">
-            <div id="developer-name">Indrapreet Singh</div>
-            <div id="developer-bio">
-              Software Development Engineer-Enquero-A Genpact Company.
-            </div>
+            <div id="developer-name">{name}</div>
+            <div id="developer-bio">{bio}</div>
             <div id="developer-web-links">
-              <img className="website-links" src="github.png" alt="" />
-              <img className="website-links" src="hackerrank.png" alt="" />
-              <img className="website-links" src="codechef.png" alt="" />
-              <img className="website-links" src="linkedin.png" alt="" />
-              <img className="website-links" src="twitter.png" alt="" />
+              <a href={"https://www.github.com/" + github_id}>
+                <img
+                  id="details-page-github-logo"
+                  className="website-links"
+                  src="github.png"
+                  alt=""
+                />
+              </a>
+              <a href={hackerrank_id}>
+                <img className="website-links" src="hackerrank.png" alt="hackerrank.png" />
+              </a>
+              <a href={codechef_id}>
+                <img className="website-links" src="codechef.png" alt="codechef.png" />
+              </a>
+              <a href={linkedin_id}>
+                <img className="website-links" src="linkedin.png" alt="linkedin.png" />
+              </a>
+              <a href={medium_id}>
+                <img className="website-links" src="medium.png" alt="medium.png" />
+              </a>
+              <a href={twitter_id}>
+                <img className="website-links" src="twitter.png" alt="twitter.png" />
+              </a>
             </div>
             <div className="developer-other-details">
-              <img
-                className="other-details-logo"
-                alt="Location"
-                src="location.svg"
-              />
-              <div className="other-details-text">Bengaluru</div>
-              <img
-                className="other-details-logo"
-                alt="Company"
-                src="company.svg"
-              />
-              <div className="other-details-text">
-                Enquero - A Genpact Company
-              </div>
-              <img
-                className="other-details-logo"
-                alt="companyWebsite"
-                src="company-website.svg"
-              />
-              <div className="other-details-text">www.enquero.com</div>
+              {location && (
+                <img
+                  className="other-details-logo"
+                  alt="Location"
+                  src="location.svg"
+                />
+              )}
+              <div className="other-details-text">{location}</div>
+              {company && (
+                <img
+                  className="other-details-logo"
+                  alt="Company"
+                  src="company.svg"
+                />
+              )}
+              <div className="other-details-text">{company}</div>
+              {blog && (
+                <img
+                  className="other-details-logo"
+                  alt="companyWebsite"
+                  src="company-website.svg"
+                />
+              )}
+              <a id="blog" href={blog}>
+                <div className="other-details-text">{blog}</div>
+              </a>
             </div>
           </div>
         </div>
         <div className="developer-repo-detail">
           <div id="github-repo-heading">Github Repositories</div>
           <GetDivider width="1340px"></GetDivider>
-          <GetGithubRepoInfo></GetGithubRepoInfo>
-          <GetGithubRepoInfo></GetGithubRepoInfo>
-          <GetGithubRepoInfo></GetGithubRepoInfo>
-          <GetGithubRepoInfo></GetGithubRepoInfo>
-          <GetGithubRepoInfo></GetGithubRepoInfo>
+          {repos &&
+            repos.map((repo) => (
+              <GetGithubRepoInfo key={repo.html_url} repo={repo} />
+            ))}
         </div>
       </div>
     );

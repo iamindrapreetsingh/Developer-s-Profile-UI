@@ -50,6 +50,12 @@ class GetModal extends Component {
     };
   }
 
+  async fetchUsers() {
+    const response = await fetch("http://localhost:7000/api/developers");
+    const data = await response.json();
+    return data;
+  }
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -57,7 +63,6 @@ class GetModal extends Component {
   submitHandler = (e) => {
     e.preventDefault();
     document.querySelector("#github-id-error").style.display = "none";
-    console.log(this.state);
     const requestPayload = {
       codechef_id: this.state.codechef,
       github_id: this.state.github,
@@ -69,14 +74,16 @@ class GetModal extends Component {
     axios
       .post("http://localhost:7000/api/developers", requestPayload)
       .then((response) => {
-        console.log("User Added");
+        this.props.changeStateFunc();
+
+        //alert on browser
         alert("User added Successfully!!");
-        const root = document.querySelector("#root");
+
         const modal = document.querySelector(".modal");
         modal.style.display = "none";
-        root.style.display = "block";
-        root.style.position = "static";
-        root.style.opacity = 1;
+        document.querySelector(".non-header-section").style.display = "flex";
+        document.querySelector(".footer").style.display = "flex";
+        document.documentElement.scrollTop = 0;
         return;
       })
       .catch((err) => {
@@ -121,12 +128,15 @@ class GetModal extends Component {
                 onChange={this.changeHandler}
                 value={inputBoxValue}
                 linkDetail={linkDetail}
+                key={linkDetail.name}
               />
             ))}
 
             <div className="cancel-nd-submit">
               <label id="cancel-label">Cancel</label>
-              <a href=".header"><input type="submit" id="submit-btn" value="submit" /></a>
+              <a href=".header">
+                <input type="submit" id="submit-btn" value="submit" />
+              </a>
             </div>
           </div>
         </form>

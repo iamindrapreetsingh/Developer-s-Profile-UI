@@ -3,31 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import GetHeader from "./header";
 import GetNonHeaderSection from "./nonHeaderSection";
-import GetFooter from "./footer";
-import GetModal from "./modal";
-import GetDeveloperDetailsPage from "./developerDetailsPage";
 
 ReactDOM.render(
   <div>
     <GetHeader></GetHeader>
     <GetNonHeaderSection></GetNonHeaderSection>
-    <GetFooter></GetFooter>
   </div>,
   document.getElementById("root")
-);
-
-ReactDOM.render(
-  <div>
-    <GetModal></GetModal>
-  </div>,
-  document.getElementById("modal-div")
-);
-
-ReactDOM.render(
-  <div>
-    <GetDeveloperDetailsPage></GetDeveloperDetailsPage>
-  </div>,
-  document.getElementById("details-page-div")
 );
 
 /**
@@ -45,9 +27,14 @@ document.querySelector("#cancel-label").addEventListener("click", () => {
   modal.style.display = "none";
   root.style.opacity = 1;
   root.style.position = "static";
+  document.querySelector(".non-header-section").style.display = "flex";
+  document.querySelector(".footer").style.display = "flex";
+  document.documentElement.scrollTop = 0;
 });
 
 addDeveloperBtn.addEventListener("click", () => {
   modal.style.display = "flex";
-  root.style.opacity = 0.3;
+  document.documentElement.scrollTop = 0;
+  document.querySelector(".non-header-section").style.display = "none";
+  document.querySelector(".footer").style.display = "none";
 });
