@@ -65,19 +65,39 @@ class GetDeveloperDetailsPage extends Component {
                 />
               </a>
               <a href={hackerrank_id}>
-                <img className="website-links" src="hackerrank.png" alt="hackerrank.png" />
+                <img
+                  className="website-links"
+                  src="hackerrank.png"
+                  alt="hackerrank.png"
+                />
               </a>
               <a href={codechef_id}>
-                <img className="website-links" src="codechef.png" alt="codechef.png" />
+                <img
+                  className="website-links"
+                  src="codechef.png"
+                  alt="codechef.png"
+                />
               </a>
               <a href={linkedin_id}>
-                <img className="website-links" src="linkedin.png" alt="linkedin.png" />
+                <img
+                  className="website-links"
+                  src="linkedin.png"
+                  alt="linkedin.png"
+                />
               </a>
               <a href={medium_id}>
-                <img className="website-links" src="medium.png" alt="medium.png" />
+                <img
+                  className="website-links"
+                  src="medium.png"
+                  alt="medium.png"
+                />
               </a>
               <a href={twitter_id}>
-                <img className="website-links" src="twitter.png" alt="twitter.png" />
+                <img
+                  className="website-links"
+                  src="twitter.png"
+                  alt="twitter.png"
+                />
               </a>
             </div>
             <div className="developer-other-details">
@@ -104,9 +124,15 @@ class GetDeveloperDetailsPage extends Component {
                   src="company-website.svg"
                 />
               )}
-              <a id="blog" href={blog}>
-                <div className="other-details-text">{blog}</div>
-              </a>
+              {blog && blog.includes("http") ? (
+                <a id="blog" href={blog}>
+                  <div className="other-details-text">{blog}</div>
+                </a>
+              ) : (
+                <a id="blog" href={"https://" + blog}>
+                  <div className="other-details-text">{blog}</div>
+                </a>
+              )}
             </div>
           </div>
         </div>
