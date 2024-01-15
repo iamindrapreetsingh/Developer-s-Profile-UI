@@ -51,7 +51,7 @@ class GetModal extends Component {
   }
 
   async fetchUsers() {
-    const response = await fetch("http://localhost:7000/api/developers");
+    const response = await fetch("https://adevelopersprofile.onrender.com/api/developers");
     const data = await response.json();
     return data;
   }
@@ -73,7 +73,7 @@ class GetModal extends Component {
       twitter_id: this.state.twitter,
     };
     axios
-      .post("http://localhost:7000/api/developers", requestPayload)
+      .post("https://adevelopersprofile.onrender.com/api/developers", requestPayload)
       .then((response) => {
         this.props.changeStateFunc();
 
